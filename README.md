@@ -14,7 +14,7 @@ kubectl create deployment nginx --image=nginx:latest --dry-run=client -o yaml > 
 kubectl apply -f nginx-deployment.yaml
 kubectl expose deployment nginx --port 80 --dry-run=client -o yaml > nginx-svc.yaml
 kubectl scale --replicas=7 deployment nginx
-kubectl create configmap --from-file=index.html
+kubectl create configmap my-config --from-file=index.html
 ```
 # helm
 ```
