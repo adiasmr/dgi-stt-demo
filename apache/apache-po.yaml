@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: apache
+  name: apache
+spec:
+  containers:
+  - image: httpd:latest
+    name: apache
+    # volumeMounts:
+    # - name: apache-index
+    #   mountPath: /usr/local/apache2/htdocs
+    resources: {}
+  # volumes:
+  # - name: apache-index
+  #   configMap:
+  #     name: apache
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
