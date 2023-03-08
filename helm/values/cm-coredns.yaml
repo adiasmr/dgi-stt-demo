@@ -1,0 +1,30 @@
+#kubectl -n kube-system delete cm coredns
+#kubectl -n kube-system apply -f helm/values/cm-coredns.yaml
+apiVersion: v1
+data:
+  Corefile: |
+    .:53 {
+        errors
+        health {
+          lameduck 5s
+        }
+        ready
+        kubernetes cluster.local in-addr.arpa ip6.arpa {
+          pods insecure
+          fallthrough in-addr.arpa ip6.arpa
+        }
+        prometheus :9153
+        hosts custom.hosts example.com {
+          192.168.1.7 example.com test.example.com
+          fallthrough
+        }
+        forward . 8.8.8.8 8.8.4.4
+        cache 30
+        loop
+        reload
+        loadbalance
+    }
+kind: ConfigMap
+metadata:
+  name: coredns
+  namespace: kube-system

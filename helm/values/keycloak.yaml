@@ -1,0 +1,22 @@
+keycloak:
+  ingress:
+    enabled: true
+    hostname: example.com
+    path: /
+    servicePort: http
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      cert-manager.io/cluster-issuer: my-issuer
+    tls: true
+  # extraEnvVars: |
+  #   - name: KEYCLOAK_USER
+  #     value: admin
+  #   - name: KEYCLOAK_PASSWORD
+  #     value: mySecurePAss:)
+  #   - name: PROXY_ADDRESS_FORWARDING
+  #     value: "true"
+  service:
+    type: ClusterIP
+  auth:
+    adminUser: admin
+    adminPassword: "mySecurePAss:)"

@@ -1,0 +1,8 @@
+auth:
+  enablePostgresUser: true
+  postgresPassword: "postgres"
+primary:
+  initdb:
+    scriptsConfigMap: "init-db-config"
+    user: "postgres"
+    password: "postgres"

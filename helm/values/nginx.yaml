@@ -1,0 +1,20 @@
+## nginx configuration
+## Ref: https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/index.md
+controller:
+  config:
+    client-header-buffer-size: "16k"
+    proxy-buffer-size: "16k"
+    proxy-body-size: "200m"
+    proxy-read-timeout: "7200"
+    proxy-connect-timeout: "7200"
+    use-geoip2: "true"
+    # forwarded-for-header: "$remote_addr"
+    log-format-upstream: >
+      $remote_addr - $geoip_country_code3/$geoip_city - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $request_length $request_time [$proxy_upstream_name] [$proxy_alternative_upstream_name] $upstream_addr $upstream_response_length $upstream_response_time $upstream_status $req_id
+
+  service:
+    enabled: true
+    enableHttp: true
+    enableHttps: true
+    type: ClusterIP
+  hostNetwork: true
